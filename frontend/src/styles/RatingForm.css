@@ -1,0 +1,51 @@
+.ratingform-card {
+  margin-top: 12px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px;
+}
+
+.ratingform-title {
+  margin-top: 0;
+  margin-bottom: 12px;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.ratingform-stars {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.ratingform-star-btn {
+  background: none;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  font-size: 20px;
+  color: #9ca3af;
+  cursor: pointer;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.15s ease;
+}
+
+.ratingform-star-btn.active {
+  color: #f59e0b;
+  border-color: #f59e0b;
+  background-color: #fffbeb;
+}
+
+.ratingform-textarea {
+  margin-bottom: 12px;
+}
+
+.ratingform-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

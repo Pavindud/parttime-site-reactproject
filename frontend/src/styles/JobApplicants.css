@@ -1,0 +1,21 @@
+.jobapplicants-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.jobapplicants-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.jobapplicants-actions-cell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}

@@ -1,0 +1,36 @@
+.posterdashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-xl);
+  flex-wrap: wrap;
+  gap: 16px;
+}
+
+.posterdashboard-title {
+  font-size: 26px;
+  font-weight: 700;
+  margin: 0;
+}
+
+.posterdashboard-rating-card {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  background-color: #ffffff;
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius);
+  padding: 16px 20px;
+  margin-bottom: var(--spacing-xl);
+}
+
+.posterdashboard-rating-label {
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.posterdashboard-actions-cell {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}

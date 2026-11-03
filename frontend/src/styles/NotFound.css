@@ -1,0 +1,25 @@
+.notfound-container {
+  max-width: 500px;
+  margin: var(--spacing-xl) auto;
+  padding: 0 var(--spacing-md);
+  text-align: center;
+}
+
+.notfound-code {
+  font-size: 72px;
+  font-weight: 800;
+  color: var(--accent-color);
+  margin: 0;
+  line-height: 1;
+}
+
+.notfound-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin: 16px 0 8px 0;
+}
+
+.notfound-desc {
+  color: var(--text-muted);
+  margin-bottom: 24px;
+}

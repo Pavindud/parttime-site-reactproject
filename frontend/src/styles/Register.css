@@ -1,0 +1,52 @@
+.register-container {
+  max-width: 440px;
+  margin: var(--spacing-xl) auto;
+  padding: 0 var(--spacing-md);
+}
+
+.register-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+  text-align: center;
+}
+
+.register-subtitle {
+  color: var(--text-muted);
+  text-align: center;
+  margin-top: 0;
+  margin-bottom: var(--spacing-lg);
+  font-size: 14px;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.register-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.register-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.register-footer {
+  text-align: center;
+  margin-top: var(--spacing-md);
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.register-footer a {
+  color: var(--accent-color);
+  font-weight: 500;
+}

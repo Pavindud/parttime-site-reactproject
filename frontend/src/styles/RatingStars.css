@@ -1,0 +1,16 @@
+.ratingstars-container {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 15px;
+}
+
+.ratingstars-stars {
+  color: #f59e0b;
+  letter-spacing: 2px;
+}
+
+.ratingstars-value {
+  color: var(--text-muted);
+  font-size: 14px;
+}
