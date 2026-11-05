@@ -76,7 +76,7 @@ export default function JobDetails() {
                   <span className={`badge badge-${job.status}`}>{job.status}</span>
                 </div>
               </div>
-              <div className="jobdetails-pay">${job.pay}</div>
+              <div className="jobdetails-pay">Rs.{job.pay}</div>
             </div>
 
             <div className="jobdetails-section">

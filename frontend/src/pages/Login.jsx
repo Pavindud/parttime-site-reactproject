@@ -42,7 +42,7 @@ export default function Login() {
 
   return (
     <>
-      <Navbar />
+      <Navbar className="navbar"/>
       <div className="login-container">
         <div className="card">
           <h2 className="login-title">Log In</h2>

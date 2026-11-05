@@ -59,7 +59,7 @@ export default function PostJob() {
                 type="text"
                 className="input"
                 required
-                placeholder="e.g. Weekend Barista, Math Tutor"
+                placeholder="e.g. Weekend cashier , Maths Tutor"
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
               />
@@ -67,7 +67,7 @@ export default function PostJob() {
 
             <div className="postjob-field">
               <label className="postjob-label" htmlFor="postjob-pay">
-                Pay / Hourly Rate ($)
+                Pay / Hourly Rate (Rs.)
               </label>
               <input
                 id="postjob-pay"
@@ -76,7 +76,7 @@ export default function PostJob() {
                 min="0"
                 className="input"
                 required
-                placeholder="e.g. 18.50"
+                placeholder="e.g. 2000.00"
                 value={pay}
                 onChange={(e) => setPay(e.target.value)}
               />
@@ -91,7 +91,7 @@ export default function PostJob() {
                 type="text"
                 className="input"
                 required
-                placeholder="e.g. Downtown, Campus Library, Remote"
+                placeholder="e.g. Dehiwala, Katubedda , Remote"
                 value={location}
                 onChange={(e) => setLocation(e.target.value)}
               />

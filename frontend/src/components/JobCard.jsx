@@ -8,7 +8,7 @@ export default function JobCard({ job }) {
     <div className="jobcard-card">
       <div className="jobcard-header">
         <h3 className="jobcard-title">{job.title}</h3>
-        <span className="jobcard-pay">${job.pay}</span>
+        <span className="jobcard-pay">Rs.{job.pay}</span>
       </div>
 
       <div className="jobcard-details">

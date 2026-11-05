@@ -1,9 +1,15 @@
+body{
+  
+}
+
 .login-container {
   max-width: 440px;
   margin: var(--spacing-xl) auto;
   padding: 0 var(--spacing-md);
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
-
 .login-title {
   font-size: 24px;
   font-weight: 700;

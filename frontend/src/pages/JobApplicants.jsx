@@ -47,6 +47,7 @@ export default function JobApplicants() {
   }, [id]);
 
   const handleStatusUpdate = async (applicationId, newStatus) => {
+    document.getElementById("ratebtn").style.display = '';
     setActionError('');
     try {
       const res = await updateApplicationStatus(applicationId, newStatus);
@@ -72,7 +73,9 @@ export default function JobApplicants() {
       )
     );
   };
-
+ function rateBtn(){
+    document.getElementById("ratebtn").style.display = '';
+ }
   return (
     <>
       <Navbar />
@@ -149,6 +152,7 @@ export default function JobApplicants() {
                             >
                               Reject
                             </button>
+                            
                           </>
                         )}
                         {app.status === 'accepted' && (
@@ -156,7 +160,7 @@ export default function JobApplicants() {
                             type="button"
                             className="btn btn-secondary"
                             style={{ minHeight: '34px', padding: '4px 10px', fontSize: '13px' }}
-                            onClick={() => handleStatusUpdate(app.application_id, 'completed')}
+                            onClick={() => {handleStatusUpdate(app.application_id, 'completed');ratebtn();}}
                           >
                             Mark completed
                           </button>
@@ -164,8 +168,8 @@ export default function JobApplicants() {
                         {!app.has_rated ? (
                           <button
                             type="button"
-                            className="btn btn-secondary"
-                            style={{ minHeight: '34px', padding: '4px 10px', fontSize: '13px' }}
+                            className="btn btn-secondary" id="ratebtn"
+                            style={{ minHeight: '34px', padding: '4px 10px', fontSize: '13px' ,display:'none'}}
                             onClick={() =>
                               setRatingTarget(
                                 ratingTarget === app.employee_id ? null : app.employee_id

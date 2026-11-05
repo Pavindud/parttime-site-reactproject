@@ -72,6 +72,7 @@ export default function Profile() {
                     <div>
                       <span className="profile-review-rater">{rev.rater_name}</span>
                       <span className="profile-review-job"> • For: {rev.job_title}</span>
+                      <span className="jobtitle">Job {rev.status}</span>
                     </div>
                     <span className="profile-review-date">
                       {new Date(rev.created_at).toLocaleDateString()}
