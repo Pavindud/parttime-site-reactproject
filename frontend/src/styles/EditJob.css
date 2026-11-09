@@ -1,0 +1,44 @@
+.editjob-container {
+  max-width: 600px;
+  margin: var(--spacing-xl) auto;
+  padding: 0 var(--spacing-md);
+}
+
+.editjob-title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-top: 0;
+  margin-bottom: var(--spacing-sm);
+  color: var(--text-color);
+}
+
+.editjob-subtitle {
+  color: var(--text-muted);
+  margin-top: 0;
+  margin-bottom: var(--spacing-lg);
+  font-size: 14px;
+}
+
+.editjob-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-md);
+}
+
+.editjob-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.editjob-label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+.editjob-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 8px;
+}

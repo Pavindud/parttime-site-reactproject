@@ -10,6 +10,7 @@ import PostJob from './pages/PostJob';
 import JobApplicants from './pages/JobApplicants';
 import Profile from './pages/Profile';
 import NotFound from './pages/NotFound';
+import EditJob from './pages/EditJob';
 import ProtectedRoute from './components/ProtectedRoute';
 
 export default function App() {
@@ -42,6 +43,14 @@ export default function App() {
             element={
               <ProtectedRoute role="poster">
                 <PostJob />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/jobs/:id/edit"
+            element={
+              <ProtectedRoute role="poster">
+                <EditJob />
               </ProtectedRoute>
             }
           />

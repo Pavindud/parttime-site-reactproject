@@ -127,3 +127,33 @@ export async function getRatings(user_id) {
   });
   return response.json();
 }
+
+export async function updateJob(jobId, data) {
+  const response = await fetch(`${BASE}/jobs/update.php`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ job_id: jobId, ...data })
+  });
+  return response.json();
+}
+
+export async function deleteJob(jobId) {
+  const response = await fetch(`${BASE}/jobs/delete.php`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ job_id: jobId })
+  });
+  return response.json();
+}
+
+export async function withdrawApplication(applicationId) {
+  const response = await fetch(`${BASE}/applications/withdraw.php`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    credentials: 'include',
+    body: JSON.stringify({ application_id: applicationId })
+  });
+  return response.json();
+}

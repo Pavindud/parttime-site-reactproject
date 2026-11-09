@@ -5,7 +5,7 @@ import RatingStars from '../components/RatingStars';
 import RatingForm from '../components/RatingForm';
 import JobCard from '../components/JobCard';
 import { useAuth } from '../context/AuthContext';
-import { getMyApplications, getJobs, getRatings } from '../api';
+import { getMyApplications, getJobs, getRatings, withdrawApplication } from '../api';
 import '../styles/EmployeeDashboard.css';
 
 export default function EmployeeDashboard() {
@@ -18,6 +18,7 @@ export default function EmployeeDashboard() {
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
+  const [actionError, setActionError] = useState('');
 
   const loadData = async () => {
     setLoading(true);
@@ -56,6 +57,23 @@ export default function EmployeeDashboard() {
     );
   };
 
+  const handleWithdraw = async (applicationId) => {
+    if (!window.confirm('Are you sure you want to withdraw this application?')) {
+      return;
+    }
+    setActionError('');
+    try {
+      const res = await withdrawApplication(applicationId);
+      if (res.success) {
+        loadData();
+      } else {
+        setActionError(res.message || 'Failed to withdraw application');
+      }
+    } catch {
+      setActionError('Network error while withdrawing application');
+    }
+  };
+
   return (
     <>
       <Navbar />
@@ -65,6 +83,7 @@ export default function EmployeeDashboard() {
         </div>
 
         {error && <div className="alert-error">{error}</div>}
+        {actionError && <div className="alert-error">{actionError}</div>}
 
         {ratingStats && (
           <div className="employeedashboard-rating-card">
@@ -122,22 +141,34 @@ export default function EmployeeDashboard() {
                         {new Date(app.applied_at).toLocaleDateString()}
                       </td>
                       <td className="employeedashboard-rate-cell">
-                        {app.has_rated ? (
-                          <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Rated</span>
-                        ) : (
-                          <button
-                            type="button"
-                            className="btn btn-secondary"
-                            style={{ minHeight: '36px', padding: '6px 12px', fontSize: '14px' }}
-                            onClick={() =>
-                              setRatingTarget(
-                                ratingTarget?.jobId === app.job_id ? null : { jobId: app.job_id, posterId: app.poster_id }
-                              )
-                            }
-                          >
-                            {ratingTarget?.jobId === app.job_id ? 'Close' : 'Rate poster'}
-                          </button>
-                        )}
+                        <div style={{ display: 'flex', gap: '8px', alignItems: 'center' }}>
+                          {app.status === 'pending' && (
+                            <button
+                              type="button"
+                              className="btn btn-danger"
+                              style={{ minHeight: '36px', padding: '6px 12px', fontSize: '14px' }}
+                              onClick={() => handleWithdraw(app.id)}
+                            >
+                              Withdraw
+                            </button>
+                          )}
+                          {app.has_rated ? (
+                            <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Rated</span>
+                          ) : (
+                            <button
+                              type="button"
+                              className="btn btn-secondary"
+                              style={{ minHeight: '36px', padding: '6px 12px', fontSize: '14px' }}
+                              onClick={() =>
+                                setRatingTarget(
+                                  ratingTarget?.jobId === app.job_id ? null : { jobId: app.job_id, posterId: app.poster_id }
+                                )
+                              }
+                            >
+                              {ratingTarget?.jobId === app.job_id ? 'Close' : 'Rate poster'}
+                            </button>
+                          )}
+                        </div>
                       </td>
                     </tr>
                   ))}

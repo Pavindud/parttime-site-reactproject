@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import Navbar from '../components/Navbar';
 import RatingStars from '../components/RatingStars';
 import { useAuth } from '../context/AuthContext';
-import { getMyJobs, closeJob, getRatings } from '../api';
+import { getMyJobs, closeJob, getRatings, deleteJob } from '../api';
 import '../styles/PosterDashboard.css';
 
 export default function PosterDashboard() {
@@ -58,6 +58,23 @@ export default function PosterDashboard() {
       }
     } catch {
       setActionError('Network error while closing job');
+    }
+  };
+
+  const handleDeleteJob = async (jobId) => {
+    if (!window.confirm('Are you sure you want to delete this job?')) {
+      return;
+    }
+    setActionError('');
+    try {
+      const res = await deleteJob(jobId);
+      if (res.success) {
+        loadData();
+      } else {
+        setActionError(res.message || 'Failed to delete job');
+      }
+    } catch {
+      setActionError('Network error while deleting job');
     }
   };
 
@@ -134,6 +151,13 @@ export default function PosterDashboard() {
                       <td>
                         <div className="posterdashboard-actions-cell">
                           <Link
+                            to={`/jobs/${job.id}/edit`}
+                            className="btn btn-secondary"
+                            style={{ minHeight: '36px', padding: '6px 12px', fontSize: '14px' }}
+                          >
+                            Edit
+                          </Link>
+                          <Link
                             to={`/jobs/${job.id}/applicants`}
                             className="btn btn-secondary"
                             style={{ minHeight: '36px', padding: '6px 12px', fontSize: '14px' }}
@@ -150,6 +174,14 @@ export default function PosterDashboard() {
                               Close
                             </button>
                           )}
+                          <button
+                            type="button"
+                            className="btn btn-danger"
+                            style={{ minHeight: '36px', padding: '6px 12px', fontSize: '14px' }}
+                            onClick={() => handleDeleteJob(job.id)}
+                          >
+                            Delete
+                          </button>
                         </div>
                       </td>
                     </tr>
