@@ -52,7 +52,8 @@ try {
             'poster_name' => $app['poster_name'],
             'status' => $app['status'],
             'applied_at' => $app['applied_at'],
-            'has_rated' => ((int)$app['rating_count'] > 0)
+            'has_rated' => ((int)$app['rating_count'] > 0),
+            'can_rate' => in_array($app['status'], ['accepted', 'completed'], true) && ((int)$app['rating_count'] === 0)
         ];
     }
 

@@ -59,7 +59,7 @@ export default function EmployeeDashboard() {
   const handleRatingSuccess = (jobId) => {
     setRatingTarget(null);
     setApplications((prev) =>
-      prev.map((app) => (app.job_id === jobId ? { ...app, has_rated: true } : app))
+      prev.map((app) => (app.job_id === jobId ? { ...app, has_rated: true, can_rate: false } : app))
     );
   };
 
@@ -160,7 +160,7 @@ export default function EmployeeDashboard() {
                           )}
                           {app.has_rated ? (
                             <span style={{ color: 'var(--text-muted)', fontSize: '14px' }}>Rated</span>
-                          ) : (
+                          ) : app.can_rate ? (
                             <button
                               type="button"
                               className="btn btn-secondary"
@@ -173,7 +173,11 @@ export default function EmployeeDashboard() {
                             >
                               {ratingTarget?.jobId === app.job_id ? 'Close' : 'Rate poster'}
                             </button>
-                          )}
+                          ) : app.status === 'pending' ? (
+                            <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>
+                              You can rate after the poster accepts
+                            </span>
+                          ) : null}
                         </div>
                       </td>
                     </tr>

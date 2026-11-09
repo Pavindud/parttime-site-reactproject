@@ -51,14 +51,19 @@ export default function JobApplicants() {
   }, [id]);
 
   const handleStatusUpdate = async (applicationId, newStatus) => {
-    document.getElementById("ratebtn").style.display = '';
     setActionError('');
     try {
       const res = await updateApplicationStatus(applicationId, newStatus);
       if (res.success) {
         setApplicants((prev) =>
           prev.map((app) =>
-            app.application_id === applicationId ? { ...app, status: newStatus } : app
+            app.application_id === applicationId
+              ? {
+                  ...app,
+                  status: newStatus,
+                  can_rate: ['pending', 'accepted', 'completed'].includes(newStatus) && !app.has_rated
+                }
+              : app
           )
         );
       } else {
@@ -73,13 +78,10 @@ export default function JobApplicants() {
     setRatingTarget(null);
     setApplicants((prev) =>
       prev.map((app) =>
-        app.employee_id === employeeId ? { ...app, has_rated: true } : app
+        app.employee_id === employeeId ? { ...app, has_rated: true, can_rate: false } : app
       )
     );
   };
- function rateBtn(){
-    document.getElementById("ratebtn").style.display = '';
- }
   return (
     <>
       <Navbar />
@@ -164,16 +166,18 @@ export default function JobApplicants() {
                             type="button"
                             className="btn btn-secondary"
                             style={{ minHeight: '34px', padding: '4px 10px', fontSize: '13px' }}
-                            onClick={() => {handleStatusUpdate(app.application_id, 'completed');ratebtn();}}
+                            onClick={() => handleStatusUpdate(app.application_id, 'completed')}
                           >
                             Mark completed
                           </button>
                         )}
-                        {!app.has_rated ? (
+                        {app.has_rated ? (
+                          <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Rated</span>
+                        ) : app.can_rate ? (
                           <button
                             type="button"
-                            className="btn btn-secondary" id="ratebtn"
-                            style={{ minHeight: '34px', padding: '4px 10px', fontSize: '13px' ,display:'none'}}
+                            className="btn btn-secondary"
+                            style={{ minHeight: '34px', padding: '4px 10px', fontSize: '13px' }}
                             onClick={() =>
                               setRatingTarget(
                                 ratingTarget === app.employee_id ? null : app.employee_id
@@ -182,9 +186,7 @@ export default function JobApplicants() {
                           >
                             {ratingTarget === app.employee_id ? 'Close' : 'Rate employee'}
                           </button>
-                        ) : (
-                          <span style={{ color: 'var(--text-muted)', fontSize: '13px' }}>Rated</span>
-                        )}
+                        ) : null}
                       </div>
                     </td>
                   </tr>

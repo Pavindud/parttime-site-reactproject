@@ -48,7 +48,7 @@ try {
 
     if ($raterRole === 'poster') {
         $stmtLink = $pdo->prepare('
-            SELECT a.id 
+            SELECT a.id, a.status 
             FROM applications a
             JOIN jobs j ON a.job_id = j.id
             WHERE a.job_id = ? AND j.poster_id = ? AND a.employee_id = ?
@@ -56,7 +56,7 @@ try {
         $stmtLink->execute([$jobId, $raterId, $ratedId]);
     } else if ($raterRole === 'employee') {
         $stmtLink = $pdo->prepare('
-            SELECT a.id 
+            SELECT a.id, a.status 
             FROM applications a
             JOIN jobs j ON a.job_id = j.id
             WHERE a.job_id = ? AND a.employee_id = ? AND j.poster_id = ?
@@ -68,10 +68,25 @@ try {
         exit;
     }
 
-    if (!$stmtLink->fetch()) {
+    $application = $stmtLink->fetch();
+    if (!$application) {
         http_response_code(403);
         echo json_encode(['success' => false, 'message' => 'No verified application exists between you and this user for this job']);
         exit;
+    }
+
+    if ($raterRole === 'poster') {
+        if (!in_array($application['status'], ['pending', 'accepted', 'completed'], true)) {
+            http_response_code(403);
+            echo json_encode(['success' => false, 'message' => 'You can rate this employee only after they have an active application for this job.']);
+            exit;
+        }
+    } else if ($raterRole === 'employee') {
+        if (!in_array($application['status'], ['accepted', 'completed'], true)) {
+            http_response_code(403);
+            echo json_encode(['success' => false, 'message' => 'You can rate the job poster only after your application has been accepted.']);
+            exit;
+        }
     }
 
     $insertStmt = $pdo->prepare('

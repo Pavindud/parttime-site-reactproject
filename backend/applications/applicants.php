@@ -73,7 +73,8 @@ try {
             'employee_rating' => $avgRating !== null ? round((float)$avgRating, 1) : null,
             'status' => $app['status'],
             'applied_at' => $app['applied_at'],
-            'has_rated' => ((int)$app['rating_count'] > 0)
+            'has_rated' => ((int)$app['rating_count'] > 0),
+            'can_rate' => in_array($app['status'], ['pending', 'accepted', 'completed'], true) && ((int)$app['rating_count'] === 0)
         ];
     }
 
