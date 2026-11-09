@@ -28,12 +28,25 @@ export default function Home() {
   };
 
   useEffect(() => {
-    fetchJobs();
-  }, []);
+    if (search === '') {
+      fetchJobs('');
+      return;
+    }
+
+    const timer = setTimeout(() => {
+      fetchJobs(search);
+    }, 200);
+
+    return () => clearTimeout(timer);
+  }, [search]);
 
   const handleSearchSubmit = (e) => {
     e.preventDefault();
     fetchJobs(search);
+  };
+
+  const handleClear = () => {
+    setSearch('');
   };
 
   return (
@@ -44,13 +57,25 @@ export default function Home() {
           <h1 className="home-title">Find Part-Time Jobs</h1>
           <p className="home-subtitle">Browse student-friendly and flexible part-time positions.</p>
           <form className="home-search-form" onSubmit={handleSearchSubmit}>
-            <input
-              type="text"
-              className="input home-search-input"
-              placeholder="Search by title, location or keywords..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-            />
+            <div className="home-search-input-wrapper">
+              <input
+                type="text"
+                className="input home-search-input"
+                placeholder="Search by title, location or keywords..."
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+              {search && (
+                <button
+                  type="button"
+                  className="home-search-clear-btn"
+                  onClick={handleClear}
+                  aria-label="Clear search"
+                >
+                  ✕
+                </button>
+              )}
+            </div>
             <button type="submit" className="btn">
               Search
             </button>

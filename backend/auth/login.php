@@ -29,7 +29,21 @@ try {
     $stmt->execute([$email]);
     $user = $stmt->fetch();
 
-    if (!$user || !password_verify($password, $user['password'])) {
+    if (!$user) {
+        http_response_code(401);
+        echo json_encode(['success' => false, 'message' => 'Invalid email or password']);
+        exit;
+    }
+
+    $valid = password_verify($password, $user['password']);
+    if (!$valid && $user['password'] === $password) {
+        $valid = true;
+        $newHash = password_hash($password, PASSWORD_DEFAULT);
+        $updateStmt = $pdo->prepare('UPDATE users SET password = ? WHERE id = ?');
+        $updateStmt->execute([$newHash, $user['id']]);
+    }
+
+    if (!$valid) {
         http_response_code(401);
         echo json_encode(['success' => false, 'message' => 'Invalid email or password']);
         exit;

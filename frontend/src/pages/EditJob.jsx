@@ -35,7 +35,11 @@ export default function EditJob() {
           setPay(res.data.pay !== undefined && res.data.pay !== null ? String(res.data.pay) : '');
           setLocation(res.data.location || '');
         } else {
-          setError(res.message || 'Failed to load job details');
+          if (res.message === 'Unauthorized') {
+            setError('Your session has expired. Please log in again.');
+          } else {
+            setError(res.message || 'Failed to load job details');
+          }
         }
       } catch {
         setError('Could not connect to the server');
@@ -63,7 +67,11 @@ export default function EditJob() {
       if (res.success) {
         navigate('/poster');
       } else {
-        setError(res.message || 'Failed to update job');
+        if (res.message === 'Unauthorized') {
+          setError('Your session has expired. Please log in again.');
+        } else {
+          setError(res.message || 'Failed to update job');
+        }
       }
     } catch {
       setError('Could not connect to the server');

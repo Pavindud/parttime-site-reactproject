@@ -32,7 +32,13 @@ export default function EmployeeDashboard() {
       ]);
 
       if (appsRes.success) setApplications(appsRes.data || []);
-      else setError(appsRes.message || 'Failed to load applications');
+      else {
+        if (appsRes.message === 'Unauthorized') {
+          setError('Your session has expired. Please log in again.');
+        } else {
+          setError(appsRes.message || 'Failed to load applications');
+        }
+      }
 
       if (jobsRes.success) setOpenJobs(jobsRes.data || []);
 

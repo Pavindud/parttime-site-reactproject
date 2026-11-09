@@ -28,7 +28,11 @@ export default function PosterDashboard() {
       if (jobsRes.success) {
         setJobs(jobsRes.data || []);
       } else {
-        setError(jobsRes.message || 'Failed to load your jobs');
+        if (jobsRes.message === 'Unauthorized') {
+          setError('Your session has expired. Please log in again.');
+        } else {
+          setError(jobsRes.message || 'Failed to load your jobs');
+        }
       }
 
       if (ratingsRes.success && ratingsRes.data) {

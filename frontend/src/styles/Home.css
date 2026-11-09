@@ -24,8 +24,39 @@
   margin: 0 auto;
 }
 
-.home-search-input {
+.home-search-input-wrapper {
+  position: relative;
   flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.home-search-input {
+  width: 100%;
+  padding-right: 36px;
+}
+
+.home-search-clear-btn {
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 4px 6px;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+}
+
+.home-search-clear-btn:hover {
+  color: var(--text-color);
+  background-color: #e2e8f0;
 }
 
 .home-section-title {

@@ -29,7 +29,11 @@ export default function JobApplicants() {
       if (appsRes.success) {
         setApplicants(appsRes.data || []);
       } else {
-        setError(appsRes.message || 'Failed to load applicants');
+        if (appsRes.message === 'Unauthorized') {
+          setError('Your session has expired. Please log in again.');
+        } else {
+          setError(appsRes.message || 'Failed to load applicants');
+        }
       }
 
       if (jobRes.success && jobRes.data) {

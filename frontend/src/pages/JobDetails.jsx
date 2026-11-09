@@ -49,7 +49,11 @@ export default function JobDetails() {
           applicant_count: (prev.applicant_count || 0) + 1
         }));
       } else {
-        setApplyError(res.message || 'Failed to submit application');
+        if (res.message === 'Unauthorized') {
+          setApplyError('Your session has expired. Please log in again to apply.');
+        } else {
+          setApplyError(res.message || 'Failed to submit application');
+        }
       }
     } catch {
       setApplyError('Could not submit application due to network error');
