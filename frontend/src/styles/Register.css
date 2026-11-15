@@ -33,6 +33,38 @@
   gap: 6px;
 }
 
+.register-password-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.register-password-input {
+  width: 100%;
+  padding-right: 42px;
+}
+
+.register-password-toggle-btn {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  color: var(--text-muted);
+  cursor: pointer;
+  padding: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  line-height: 1;
+}
+
+.register-password-toggle-btn:hover {
+  color: var(--text-color);
+}
+
 .register-label {
   font-size: 14px;
   font-weight: 500;

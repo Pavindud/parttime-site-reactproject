@@ -1,0 +1,61 @@
+
+Member 1: [Bhashitha L.G.P.D.] - [255512K]
+Role: Backend Developer
+Contributions:
+- Designed and implemented the MySQL database schema (users, jobs, job_views, applications, ratings tables)
+- Developed the PHP backend API endpoints (register, login, logout)
+- Implemented job management endpoints (list, get, create, update, delete, close, my_jobs)
+- Implemented application management endpoints (apply, my_applications, applicants, update_status, withdraw)
+- Implemented rating system endpoints with mandatory link verification (add, get)
+- Configured CORS, session management and database connection (cors.php, session.php, db.php)
+- Set up React frontend routing, ProtectedRoute and api.js function structure (App.jsx)
+- Deployed backend to InfinityFree hosting with MySQL database setup
+- Managed Git repository, branch structure and merge requests
+
+============================================================
+
+Member 2: [Malnethmi K.D.N.] - [254128F]
+Role: Frontend Developer - Public Pages
+Contributions:
+- Developed Home page with job listing and search functionality (Home.jsx)
+- Developed Register page with role selection (Register.jsx)
+- Developed Login page with role-based redirect (Login.jsx)
+- Developed 404 Not Found page (NotFound.jsx)
+- Implemented AuthContext for global login state management (AuthContext.jsx)
+- Implemented Navbar component with public, employee and poster variants (Navbar.jsx)
+- Styled all public pages and Navbar component (Navbar.css, Login.css, Register.css, Home.css)
+
+============================================================
+
+Member 3: [Jayasundara J.M.P.N.S.] - [254097G]
+Role: Frontend Developer - Employee Side
+Contributions:
+- Developed Job Details page with apply button and view/applicant counts (JobDetails.jsx)
+- Developed Employee Dashboard with application list and job browsing (EmployeeDashboard.jsx)
+- Implemented JobCard reusable component (JobCard.jsx)
+- Integrated apply, withdraw and job view tracking functionality
+- Styled all employee-side pages and components (JobDetails.css, EmployeeDashboard.css, JobCard.css)
+
+============================================================
+
+Member 4: [Rajapaksha R. M. D. S.] - [255534E]
+Role: Frontend Developer - Poster Side
+Contributions:
+- Developed Poster Dashboard with job management, view counts and applicant counts (PosterDashboard.jsx)
+- Developed Post Job page with job creation form (PostJob.jsx)
+- Developed Edit Job page with pre-filled update form (EditJob.jsx)
+- Developed Job Applicants page with accept, reject, complete and rate functionality (JobApplicants.jsx)
+- Styled all poster-side pages (PosterDashboard.css, PostJob.css, EditJob.css, JobApplicants.css)
+
+============================================================
+
+Member 5: [Arachchi W.A.N.S.W.] - [254014D]
+Role: Frontend Developer - Rating and Profile
+Contributions:
+- Developed Profile page with user rating and reviews display (Profile.jsx)
+- Implemented RatingForm component with star picker and submission (RatingForm.jsx)
+- Implemented RatingStars component for display (RatingStars.jsx)
+- Integrated rating rules (poster rates after pending, employee rates after accepted)
+- Developed and maintained shared styles and CSS variables (main.css)
+- Assisted with project report writing and video demonstration
+
