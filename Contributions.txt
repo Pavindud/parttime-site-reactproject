@@ -9,7 +9,7 @@ Contributions:
 - Implemented rating system endpoints with mandatory link verification (add, get)
 - Configured CORS, session management and database connection (cors.php, session.php, db.php)
 - Set up React frontend routing, ProtectedRoute and api.js function structure (App.jsx)
-- Deployed backend to InfinityFree hosting with MySQL database setup
+- Deployed backend to MySQL database setup
 - Managed Git repository, branch structure and merge requests
 
 ============================================================
